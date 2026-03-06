@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # 关键修改：指向你的「网站」文件夹
-          path: './网站'
+          path: '.website'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
