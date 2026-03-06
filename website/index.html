@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>田于浩本周工作作品集</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --card-bg: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
+            z-index: -1;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 3rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--light);
+        }
+
+        header {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 60px rgba(99, 102, 241, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--light) 0%, var(--gray) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 2rem;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .section-desc {
+            color: var(--gray);
+            margin-bottom: 3rem;
+            margin-left: 1.5rem;
+        }
+
+        .projects {
+            padding: 4rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .project-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .project-tag {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 16/10;
+            background: var(--dark);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-item .overlay span {
+            color: var(--light);
+            font-weight: 500;
+        }
+
+        .timeline {
+            padding: 4rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin-top: 0.5rem;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .timeline-dot::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--primary), transparent);
+        }
+
+        .timeline-item:last-child .timeline-dot::after {
+            display: none;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-content p {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--gray);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            color: var(--light);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .stats { gap: 1.5rem; }
+            .nav-links { display: none; }
+            .projects, .timeline { padding: 2rem 1.5rem; }
+            .project-card { padding: 1.5rem; }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    
+    <nav>
+        <div class="logo">🦐 小虾弟作品集</div>
+        <ul class="nav-links">
+            <li><a href="#overview">总览</a></li>
+            <li><a href="#projects">项目作品</a></li>
+            <li><a href="#timeline">时间线</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="avatar">🎨</div>
+        <h1>田于浩本周工作作品集</h1>
+        <p class="subtitle">2026年3月2日 - 3月8日 运营设计物料汇总</p>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">设计产出</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">4</div>
+                <div class="stat-label">项目数量</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">7天</div>
+                <div class="stat-label">工作周期</div>
+            </div>
+        </div>
+    </header>
+
+    <section class="projects" id="projects">
+        <h2 class="section-title">项目作品</h2>
+        <p class="section-desc">本周完成的设计物料（公开版）</p>
+
+        <!-- 画吾字画 -->
+        <div class="project-card fade-in">
+            <div class="project-header">
+                <div class="project-info">
+                    <h3>🖼️ 画吾字画第二期</h3>
+                    <p>电商物料设计与产品展示</p>
+                </div>
+                <span class="project-tag">电商设计</span>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/画吾字画_封面图.jpg" alt="封面图">
+                    <div class="overlay"><span>封面图</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/画吾字画_详情页.jpg" alt="详情页">
+                    <div class="overlay"><span>详情页</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/画吾字画_预约海报.jpg" alt="预约海报">
+                    <div class="overlay"><span>预约海报</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/画吾字画_手机壳.png" alt="手机壳">
+                    <div class="overlay"><span>手机壳</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/画吾字画_社区banner.jpg" alt="社区banner">
+                    <div class="overlay"><span>社区Banner</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/画吾字画_首页banner.jpg" alt="首页banner">
+                    <div class="overlay"><span>首页Banner</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 精卫盲盒 -->
+        <div class="project-card fade-in">
+            <div class="project-header">
+                <div class="project-info">
+                    <h3>📦 精卫盲盒上线Banner</h3>
+                    <p>IP盲盒上线推广物料设计</p>
+                </div>
+                <span class="project-tag">IP运营</span>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/精卫盲盒_山海弹窗.png" alt="山海弹窗">
+                    <div class="overlay"><span>山海弹窗</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/精卫盲盒_社区banner.jpg" alt="社区banner">
+                    <div class="overlay"><span>社区Banner</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/精卫盲盒_芒果文博子频道.png" alt="芒果文博子频道">
+                    <div class="overlay"><span>芒果文博子频道</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/精卫盲盒_首页小banner.jpg" alt="首页小banner">
+                    <div class="overlay"><span>首页小Banner</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 精卫社区投票 -->
+        <div class="project-card fade-in">
+            <div class="project-header">
+                <div class="project-info">
+                    <h3>🗳️ 精卫社区投票活动</h3>
+                    <p>社区互动活动页面设计</p>
+                </div>
+                <span class="project-tag">活动设计</span>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/精卫投票_投票页.jpg" alt="投票页">
+                    <div class="overlay"><span>投票页面</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/精卫投票_首页完整状态.jpg" alt="首页完整状态">
+                    <div class="overlay"><span>首页完整状态</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/精卫投票_banner.png" alt="banner">
+                    <div class="overlay"><span>活动Banner</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 首页文物 -->
+        <div class="project-card fade-in">
+            <div class="project-header">
+                <div class="project-info">
+                    <h3>🏺 首页文物闪图</h3>
+                    <p>周期性文化文物展示素材</p>
+                </div>
+                <span class="project-tag">周期性更新</span>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/文物_3.2-3.8.png" alt="3.2-3.8首页文物">
+                    <div class="overlay"><span>3月2日-3月8日</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/文物_3.9-3.15.png" alt="3.9-3.15首页文物">
+                    <div class="overlay"><span>3月9日-3月15日</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline" id="timeline">
+        <h2 class="section-title">工作时间线</h2>
+        <p class="section-desc">本周工作分布</p>
+        
+        <div class="timeline-grid">
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>3月2日 - 3月3日</h4>
+                    <p>精卫盲盒上线物料设计</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>3月4日</h4>
+                    <p>画吾字画第二期详情页、封面图设计</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>3月5日</h4>
+                    <p>精卫社区投票活动页面设计</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>3月6日</h4>
+                    <p>首页文物闪图更新、投票页面收尾</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>🦐 田于浩本周工作作品集 | 2026年3月</p>
+        <p>共完成15+项设计产出</p>
+    </footer>
+
+    <!-- 灯箱 -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        // 灯箱功能
+        function openLightbox(item) {
+            const img = item.querySelector('img');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = img.src;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        // 滚动动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
